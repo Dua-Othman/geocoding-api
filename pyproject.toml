@@ -1,0 +1,33 @@
+[project]
+name = "geocoding-api"
+version = "1.0.0"
+description = "Minimal forward/reverse geocoding API service (single endpoint, in-memory indexes, OSM-derived sample data)"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn>=0.32",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "pytest-cov>=5",
+    "httpx>=0.27",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["geocoding_api"]
+omit = ["*/geocoding_api/main.py", "*/geocoding_api/__main__.py"]
+
+[tool.coverage.report]
+fail_under = 80
